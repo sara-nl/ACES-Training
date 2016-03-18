@@ -17,9 +17,6 @@ export PATH=$D/epd-7.3-1-rh5-x86_64/bin:$PATH
 
 If you want to use an own python distribution, please install the following packages.
 
-File | Target audience
-------|-------------------
-
 Module | Version
 -------|---------------
 numpy | 1.6.1.
