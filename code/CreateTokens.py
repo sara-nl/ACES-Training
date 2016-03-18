@@ -10,8 +10,6 @@ import pprint
 from picas.generators import TokenGenerator
 from picas.clients import CouchClient
 
-from SetUpGrid import CombineDataExperiment05
-
 def generate_tokens(DataAndFeatureExtractors, nrRepeats, nrFolds, experiment):
     """
     Generate all the tokens.
