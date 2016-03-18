@@ -25,5 +25,7 @@ h5py version 2.0.0
 xlrd
 couchDB version 0.9
 
-
+## Context
+The training will make use of a double-looop crossvalidation pipeline which is described in detail in [Staiger et. al](http://dx.doi.org/10.3389/fgene.2013.00289). 
+We will create tokens for the Single cene classifer and the Lee classifiers. Furthermore and for didactical reasons we will also create tokens which will fail to be processed by the pipeline.
 
