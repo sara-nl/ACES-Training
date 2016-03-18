@@ -24,7 +24,7 @@ done | lock | meaning
 0 | 0 | Token needs to be tackled and will end up in a todo list.
 0 | 1 | Token is being processed, or during the computation an error occurred.
 1 | 1 | Token was successfully processed.
-0 | 1 | This is weird state of the token which should never occurr.
+1 | 0 | This is weird state of the token which should never occurr.
 
 For each of the combinations we can create a so-called view in the couchdb and only process tokens belonging to a specific view, e.g. 
 the combination for the todo list.
