@@ -28,7 +28,7 @@ The python file **createTokens.py** contains these functions.
 For this we need information on how often we want to **repeat** the cross validation *nrRepeats* and in how **many parts** we want to split our dataset *nrFolds*. For a **5-fold crossvalidation** *nrFolds* would be five.
 To label the runs according to a special experiment, we will also give a keyword for this experiment. this comes in handy when accommodating tokens of several experiments in the same couchdb. 
 
-First we create the tokens for the outerloop, we will run a 5-fold crossvalidation only once and label the tokens as "Training", hence the additional parameters are *1*, *5* and *Training*:
+First we create the tokens for the outerloop, we will run a 5-fold crossvalidation 10 times and label the tokens as "Training", hence the additional parameters are *10*, *5* and *Training*:
 
 ```py
 from CreateTokens import generate_tokens
@@ -36,7 +36,7 @@ from CreateTokens import generate_tokens
 First get some help on which parameters need to be set.
 ```py
 ?generate_tokens
-outerTokens = generate_tokens(DataAndFeatureExtractors, 1, 5, "Training")
+outerTokens = generate_tokens(DataAndFeatureExtractors, 10, 5, "TrainingOuter")
 ```
 
 Inspect the first token:
@@ -51,8 +51,23 @@ Now let us create the tokens to execute the innerloop of the crossvalidation.
 The first three parameters need to match the first three parameters for the outer loop. Additionally, we need to give the parameters for the inner loop, i.e. how often do we want to run the innerloop and in how many parts do we want to split the data. *Note* that when entering the innerloop, we do not receive the full data set but nly the n-1 parts that are used for training in the outer loop.
 You can first inspect the help to this function.
 ```py
-
 from CreateTokens import generate_tokens_innerloop
-innerTokens = (DataAndFeatureExtractors, 1, 5, 1, 5, TrainingInner)
+innerTokens = generate_tokens_innerloop(DataAndFeatureExtractors, 10, 5, 3, 5, "TrainingInner")
 ```
+
+Now we need to upload the data to a couchdb instance.
+
+1) connect to de database and upload the tokens
+```py
+import couchdb
+
+couch = couchdb.Server("https://nosql01.grid.sara.nl:6984")
+couch.resource.credentials = (<username>, <password>)
+db = couch["hpc-training"]
+
+for token in outerTokens+innerTokens:
+    db.create(token)
+```
+
+Now go to https://nosql01.grid.sara.nl:6984 and access the training database and inspect the tokens.
 
