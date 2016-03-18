@@ -10,6 +10,9 @@ To follow the tutorial you need a python distribution and access to a couchdb in
 We provide an an old python distribution epd.tar.gz pre-installed with all required additional packages.
 
 Using the provided python distribution:
+You can download the *epd* here:
+https://ndownloader.figshare.com/files/4851667
+
 ```sh
 tar xzf epd.tgz
 export PATH=$D/epd-7.3-1-rh5-x86_64/bin:$PATH
