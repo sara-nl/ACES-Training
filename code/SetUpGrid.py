@@ -46,6 +46,7 @@ def SetUpRun(dataset, network, method):
 
     #get data from figshare
     # wget -P data/ https://ndownloader.figshare.com/files/4851460
+    print "Downloading data from figshare."
     PATH = "data/"
     wget = ["wget", "-P", PATH, "https://ndownloader.figshare.com/files/4851460"]  
     proc = subprocess.Popen(wget, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -53,7 +54,7 @@ def SetUpRun(dataset, network, method):
     output, err = proc.communicate()  
   
     #get dataset
-    f = h5py.File("data/U133A_combat.h5")
+    f = h5py.File("data/4851460")
     # The hdf5 file contains several datasets, fetch the one we indicated 
     data = [HDF5GroupToExpressionDataset(f[group]) for group in f.keys() if dataset in group][0]
     f.close()
@@ -123,9 +124,9 @@ def RunInstance(data, net, featureSelector, special, classifiers, repeat, nrFold
     
     #return the resulting features, and classification results
     if net == None:
-        return (data.name, featureExtractor.name, None, shuffle, featureExtractor.toJsonExpression(), AucAndCi)    
+        return (data.name, featureExtractor.name, None, None, featureExtractor.toJsonExpression(), AucAndCi)    
     else:
-        return (data.name, featureExtractor.name, net.name, shuffle, featureExtractor.toJsonExpression(), AucAndCi)
+        return (data.name, featureExtractor.name, net.name, None, featureExtractor.toJsonExpression(), AucAndCi)
 
 def splitData(data, fold, repeat, nrFolds):
     #split datasets

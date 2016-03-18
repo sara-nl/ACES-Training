@@ -79,6 +79,43 @@ print(featureSelector)
 print(classifiers)
 ```
 
+Now we can calculate the result, with number of folds 
+```py
+(dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
+    data, net, featureSelector, specific, classifiers, repeat, 10, fold, shuffleNr, Dataset2Time)
+```
+
+The output contains some simple data types like strings and numbers.
+
+```py
+print(dataName)
+print(featureExtractorproductName)
+print(netName)
+```
+
+But also some complicated data structures:
+
+```py
+type(AucAndCi)
+```
+
+Some very complicated datastructure were converted to json strings but we cab revive them.
+
+```
+import json
+type(featureExtractor)
+FE = json.loads(featureExtractor)
+```
+
+*FE* is a list containing
+- Name
+- Namespace of the features
+- Ranked indexes of the features according to their performance
+Converting these datastructures to json and having functions to restore them allows us to store the output in the tokens.
+
+## Executing the pipeline
+Now that we are convinced that the pipeline works, we can execute it on a compute cluster like lisa.
+
 
 
 
