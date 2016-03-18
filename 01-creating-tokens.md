@@ -25,5 +25,34 @@ This becomes even more complicated since we try to run a double loop cross valid
 <img src="https://github.com/chStaiger/ACES-Training/blob/master/DLCV.jpg" width="400px">
 
 The python file **createTokens.py** contains these functions.
+For this we need information on how often we want to **repeat** the cross validation *nrRepeats* and in how **many parts** we want to split our dataset *nrFolds*. For a **5-fold crossvalidation** *nrFolds* would be five.
+To label the runs according to a special experiment, we will also give a keyword for this experiment. this comes in handy when accommodating tokens of several experiments in the same couchdb. 
 
+First we create the tokens for the outerloop, we will run a 5-fold crossvalidation only once and label the tokens as "Training", hence the additional parameters are *1*, *5* and *Training*:
+
+```py
+from CreateTokens import generate_tokens
+```
+First get some help on which parameters need to be set.
+```py
+?generate_tokens
+outerTokens = generate_tokens(DataAndFeatureExtractors, 1, 5, "Training")
+```
+
+Inspect the first token:
+```py
+outerTokens[0]
+outerTokens[0]['input']
+```
+You see that the token is nothing more than a python dictionary, containing an ID and another dictionary, which contains all necessary input parameters. 
+There are also the keywords *done*, *hostname*, *lock* and *scrub_count* which will be set and used when the token is processed.
+
+Now let us create the tokens to execute the innerloop of the crossvalidation.
+The first three parameters need to match the first three parameters for the outer loop. Additionally, we need to give the parameters for the inner loop, i.e. how often do we want to run the innerloop and in how many parts do we want to split the data. *Note* that when entering the innerloop, we do not receive the full data set but nly the n-1 parts that are used for training in the outer loop.
+You can first inspect the help to this function.
+```py
+
+from CreateTokens import generate_tokens_innerloop
+innerTokens = (DataAndFeatureExtractors, 1, 5, 1, 5, TrainingInner)
+```
 
