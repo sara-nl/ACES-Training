@@ -16,16 +16,16 @@ export PATH=$D/epd-7.3-1-rh5-x86_64/bin:$PATH
 ```
 
 If you want to use an own python distribution, please install the following packages.
-python dependencies:
+module | version
 ----------------------
-numpy version 1.6.1.
-scipy version 0.10.0
-sklearn version 0.11
-h5py version 2.0.0
-xlrd
-couchDB version 0.9
+numpy | 1.6.1.
+scipy | 0.10.0
+sklearn | 0.11
+h5py | 2.0.0
+xlrd |
+couchDB | 0.9
 
 ## Context
 The training will make use of a double-looop crossvalidation pipeline which is described in detail in [Staiger et. al](http://dx.doi.org/10.3389/fgene.2013.00289). 
-We will create tokens for the Single cene classifer and the Lee classifiers. Furthermore and for didactical reasons we will also create tokens which will fail to be processed by the pipeline.
+We will create tokens for the Single gene classifer and the Lee classifiers. Furthermore and for didactical reasons we will also create tokens which will fail to be processed by the pipeline.
 
