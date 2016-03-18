@@ -22,7 +22,7 @@ Now we have the right combination of algorithms, their special parameters and th
 From this list we will create tokens which will be saved in a couchdb. The tokens also need to contain information on the status of the cross validation, i.e. the split of data which is used for training (extracting features) and the split of data which is used for testing the classifier which is employing the extracted features.
 This becomes even more complicated since we try to run a double loop cross validation.
 
-<img src= width="400px">
+<img src="https://github.com/chStaiger/ACES-Training/blob/master/DLCV.jpg" width="400px">
 
 The python file **createTokens.py** contains these functions.
 
