@@ -16,13 +16,17 @@ export PATH=$D/epd-7.3-1-rh5-x86_64/bin:$PATH
 ```
 
 If you want to use an own python distribution, please install the following packages.
-module | version
+
+File | Target audience
+------|-------------------
+
+Module | Version
 -------|---------------
 numpy | 1.6.1.
 scipy | 0.10.0
 sklearn | 0.11
 h5py | 2.0.0
-xlrd |
+xlrd | not known
 couchDB | 0.9
 
 ## Context
