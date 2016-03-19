@@ -13,7 +13,7 @@ We will ship the code as a tgz-file.
 1) Open *pipeline.py* and enter your couchdb username and password and save the file.
 2) Create the tar-ball:
    ```sh
-   tar czf /home/<user>/code.tgz <path>/code
+   tar czf /home/<user>/code.tgz /home/<user>/<ACESPATH>/code
    ``` 
 
 ### Creating the shell-script
