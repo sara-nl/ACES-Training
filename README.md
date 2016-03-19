@@ -11,7 +11,7 @@ On lisa execute
 
 ```sh
 easy_install --user couchdb
-easy_install--user  scikit-learn
+easy_install --user  scikit-learn
 ```
 
 If you want to use an own python distribution, please install the following packages.
