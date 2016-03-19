@@ -177,3 +177,4 @@ def resetTokens(ids, db):
         updateContent = {'lock': 0, 
             'scrub_count' : scrub+1}
         token.update(updateContent)
+        db.save(token)
