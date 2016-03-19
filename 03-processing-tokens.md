@@ -81,6 +81,7 @@ print(classifiers)
 
 Now we can calculate the result, with number of folds 
 ```py
+from SetUpGrid import RunInstance
 (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
     data, net, featureSelector, specific, classifiers, repeat, 10, fold, shuffleNr, Dataset2Time)
 ```
@@ -105,6 +106,7 @@ Some very complicated datastructure were converted to json strings but we cab re
 import json
 type(featureExtractor)
 FE = json.loads(featureExtractor)
+type(FE)
 ```
 
 *FE* is a list containing
@@ -114,7 +116,7 @@ FE = json.loads(featureExtractor)
 Converting these datastructures to json and having functions to restore them allows us to store the output in the tokens.
 
 ## Executing the pipeline
-Now that we are convinced that the pipeline works, we can execute it on a compute cluster like lisa.
+Now that we are convinced that the pipeline works, we can execute it on a compute cluster like lisa. 
 
 
 
