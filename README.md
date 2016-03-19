@@ -7,13 +7,11 @@ The pipeline makes use of couchdb as a token pool server and uses python and the
 
 ## Technology requisites
 To follow the tutorial you need a python distribution and access to a couchdb instance.
-We provide an an old python distribution epd.tar.gz pre-installed with all required additional packages.
+On lisa execute
 
-Using the provided python distribution:
-You can download the [epd](https://ndownloader.figshare.com/files/4853815) and install it:
 ```sh
-tar xzf epd.tgz
-export PATH=$D/epd-7.3-1-rh5-x86_64/bin:$PATH
+easy_install --user couchdb
+easy_install--user  scikit-learn
 ```
 
 If you want to use an own python distribution, please install the following packages.
