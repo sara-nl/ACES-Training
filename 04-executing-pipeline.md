@@ -93,5 +93,14 @@ python pipeline.py
 qsub go.sh
 ```
 
+If you need to start the same script several times you can use
+```sh
+qsub -t 1-100 go.sh
+```
+
+To monitor your jobs, use
+```sh
+qstat -u <username>
+```
 
 
