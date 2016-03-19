@@ -91,6 +91,7 @@ def main():
     nrFolds = 10
     client = CouchClient(url="http://<server>:<port>", db="<dbname>", username="<username>", password="***")
     modifier = BasicTokenModifier()
+    # we need the view to be run/Todo
     iterator = BasicViewIterator(client, '<db-view>', modifier)
     actor = ExampleActor(iterator, modifier, nrFolds)
     actor.run()
