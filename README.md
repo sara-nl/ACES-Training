@@ -30,6 +30,7 @@ You will need the code provided in this repository. You can download it like thi
 ```sh
 git clone https://github.com/chStaiger/ACES-Training.git
 ```
+Change to *ACES-Training/code* and start python there. All code has to be run in this directory to make sure that the imports work.
 
 ## Context
 The training will make use of a double-looop crossvalidation pipeline which is described in detail in [Staiger et. al](http://dx.doi.org/10.3389/fgene.2013.00289). 
