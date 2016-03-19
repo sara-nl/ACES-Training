@@ -78,8 +78,8 @@ mkdir $D
 cd $D
 
 # Copy and unpack the code
-cp ~/code.tgz code.tgz
-tar xzf code.tgz
+cp ~/code.tgz $D/code.tgz
+tar xzf $D/code.tgz
 
 cd $D/code/
 
