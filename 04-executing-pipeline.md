@@ -13,7 +13,8 @@ We will ship the code as a tgz-file.
 1) Open *pipeline.py* and enter your couchdb username and password and save the file.
 2) Create the tar-ball:
    ```sh
-   tar czf /home/<user>/code.tgz /home/<user>/<ACESPATH>/code
+   cd /home/<user>/<ACESPATH>
+   tar cvzf /home/<user>/code.tgz code/ 
    ``` 
 
 ### Creating the shell-script
@@ -47,7 +48,7 @@ Now we copy our code to the working directory, unpack it and change our working 
 ```sh
 cp ~/code.tgz code.tgz
 tar xzf code.tgz
-cd $D/code/
+cd code/
 ```
 
 Finally we can start our python pipeline.
@@ -78,10 +79,10 @@ mkdir $D
 cd $D
 
 # Copy and unpack the code
-cp ~/code.tgz $D/code.tgz
-tar xzf $D/code.tgz
+cp ~/code.tgz code.tgz
+tar xzf code.tgz
 
-cd $D/code/
+cd code/
 
 # Start the pipeline
 python pipeline.py
