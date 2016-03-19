@@ -47,7 +47,7 @@ Now we copy our code to the working directory, unpack it and change our working 
 ```sh
 cp ~/code.tgz code.tgz
 tar xzf code.tgz
-cd code/
+cd $D/code/
 ```
 
 Finally we can start our python pipeline.
@@ -81,7 +81,7 @@ cd $D
 cp ~/code.tgz code.tgz
 tar xzf code.tgz
 
-cd code/
+cd $D/code/
 
 # Start the pipeline
 python pipeline.py
