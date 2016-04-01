@@ -45,6 +45,11 @@ We will ship the code as a tgz-file.
 
 ### Creating the shell-script
 
+Change back to your *home* directory
+```sh
+cd
+```
+
 First we need to set some parameters for lisa to choose the number of nodes, memory and running time.
 
 ```sh
