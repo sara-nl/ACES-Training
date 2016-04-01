@@ -1,7 +1,7 @@
 # Processing tokens in the couchdb
 
 ## Outline
-In this section we will finally process the tokens we created.
+In this section we will process one of the tokens we created.
 
 1) We will inspect the code which will translate our tokens into instances of classes for datasets, classifiers and feature extraction algorithms. In short we will answer the question how do I come from a combination of strings, parameters and flags to something that really does the computation.
 
@@ -15,13 +15,7 @@ In this section we will finally process the tokens we created.
 
 2d) Start the computation
 
-2e) Store the result in the token and push it to the couchdb
-
-3) Iterate over the steps under 2) until there are no more tokens in our todo view.
-
-4) **Watch out**
- In the todo view there are also tokens which will not run properly and which will end with an error. So you might receive error messages during the computation. In that case try to find out what went wrong and either fix the token so that it can be processed or move it from the pending list to the weird list.
-You can do that in the futon view of the couchdb or via python code employing the [couchdb module](https://pythonhosted.org/CouchDB/getting-started.html).
+2e) Inspect the result
 
 ## Data
 Before we can run a token manually, we need to download some data which will be processed. In the actual pipeline tha data will be downloaded automatically.
