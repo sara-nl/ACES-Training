@@ -7,7 +7,7 @@ The pipeline makes use of couchdb as a token pool server and uses python and the
 
 ## Technology requisites
 To follow the tutorial you need a python distribution and access to a couchdb instance.
-On lisa execute
+In our tutorial we make us e of the lisa-cluster. On lisa execute
 
 ```sh
 easy_install --user couchdb
@@ -28,11 +28,11 @@ couchDB | 0.9
 ## Downloading this repository
 You will need the code provided in this repository. You can download it like this:
 ```sh
-git clone https://github.com/chStaiger/ACES-Training.git
+git clone https://github.com/sara-nl/ACES-Training.git
 ```
 Change to *ACES-Training/code* and start python there. All code has to be run in this directory to make sure that the imports work.
 
 ## Context
-The training will make use of a double-looop crossvalidation pipeline which is described in detail in [Staiger et. al](http://dx.doi.org/10.3389/fgene.2013.00289). 
-We will create tokens for the Single gene classifier and the Lee classifiers. Furthermore and for didactical reasons we will also create tokens which will fail to be processed by the pipeline.
+The training will make use of a double-loop crossvalidation pipeline which is described in detail in [Staiger et. al](http://dx.doi.org/10.3389/fgene.2013.00289). 
+We will create tokens for the Single gene classifier, Random gene classifier and the Lee classifiers. Furthermore and for didactical reasons we will also create tokens which will fail to be processed by the pipeline.
 
