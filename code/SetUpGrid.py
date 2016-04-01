@@ -46,15 +46,15 @@ def SetUpRun(dataset, network, method):
 
     #get data from figshare
     # wget -P data/ https://ndownloader.figshare.com/files/4851460
-    print "Downloading data from figshare."
-    PATH = "data/"
-    wget = ["wget", "-P", PATH, "https://ndownloader.figshare.com/files/4851460"]  
-    proc = subprocess.Popen(wget, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                            stderr = subprocess.PIPE)
-    output, err = proc.communicate()  
+    #print "Downloading data from figshare."
+    #PATH = "data/"
+    #wget = ["wget", "-P", PATH, "https://ndownloader.figshare.com/files/4851460"]  
+    #proc = subprocess.Popen(wget, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                            #stderr = subprocess.PIPE)
+    #output, err = proc.communicate()  
   
     #get dataset
-    f = h5py.File("data/4851460")
+    f = h5py.File("../4851460")
     # The hdf5 file contains several datasets, fetch the one we indicated 
     data = [HDF5GroupToExpressionDataset(f[group]) for group in f.keys() if dataset in group][0]
     f.close()
