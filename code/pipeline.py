@@ -72,8 +72,7 @@ class ExampleActor(RunActor):
         # close the token after the computations, setting flag done            
         token = self.modifier.close(token)
         # store the featureExtractor and AUCs in a new dictionary output
-        token['output'] = 
-            (dataName, featureExtractorproductName, netName, shuffleNr, shuffle, featureExtractor, AucAndCi)
+        token['output'] = (dataName, featureExtractorproductName, netName, shuffleNr, shuffle, featureExtractor, AucAndCi)
         self.db[token['_id']] = token
 
     def cleanup_run(self, *kargs, **kvargs):
