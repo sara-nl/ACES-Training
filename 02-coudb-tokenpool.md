@@ -22,9 +22,11 @@ Combinations of these two flags tell us something about the state of a token.
 done | lock | meaning
 ------|-----|---------
 0 | 0 | Token needs to be tackled and will end up in a todo list.
-0 | 1 | Token is being processed, or during the computation an error occurred.
-1 | 1 | Token was successfully processed.
-1 | 0 | This is a weird state of the token which should never occurr.
+0 | >0 | Token is being processed, or during the computation an error occurred.
+>0 | >0 | Token was successfully processed.
+>0 | 0 | This is a weird state of the token which should never occurr.
+
+During the processing the flags *lock* and *done* will be set with the system time so that, after a token is successfully processed, you can get the running with *lock*-*done*.
 
 For each of the combinations we can create a so-called view in the couchdb and only process tokens belonging to a specific view, e.g. 
 the combination for the todo list.
@@ -45,3 +47,5 @@ The flags get updated in the pipeline automatically according to their state. Th
 }
  ```
 4) Save the view under _design/run with the name *Todo*
+
+In our example couchdb we already prepared these views for you.
