@@ -5,10 +5,10 @@ In this section we will create database entries which code for single runs.
 1) Make the right combination of key words
 2) Convert this list of keywords into json and store in couchdb
 
-Start an ipython or interactive python session in the folder ***code*.
+Start an ipython or interactive python session in the folder *code*.
 
 ## Coding for the tokens
-The function **CombineData** in **SetUpGrid.py** creates a list
+The function *CombineData* in *SetUpGrid.py* creates a list
 ```sh
 [(<dataset>, ((<algorithm>, <specific paramteres>), <network or pathway data>), <#shuffles of the network data>)]
 ``` 
@@ -24,11 +24,12 @@ This becomes even more complicated since we try to run a double loop cross valid
 
 <img src="https://github.com/chStaiger/ACES-Training/blob/master/DLCV.jpg" width="400px">
 
-The python file **createTokens.py** contains these functions.
+The python file *createTokens.py* contains these functions.
 For this we need information on how often we want to **repeat** the cross validation *nrRepeats* and in how **many parts** we want to split our dataset *nrFolds*. For a **5-fold crossvalidation** *nrFolds* would be five.
-To label the runs according to a special experiment, we will also give a keyword for this experiment. this comes in handy when accommodating tokens of several experiments in the same couchdb. 
+To label the runs according to a special experiment, we will also give a keyword for this experiment. This comes in handy when accommodating tokens of several experiments in the same couchdb. 
+You can add your initials to the keyword to later find your tokens in the database.
 
-First we create the tokens for the outerloop, we will run a 5-fold crossvalidation 10 times and label the tokens as "Training", hence the additional parameters are *10*, *5* and *Training*:
+First we create the tokens for the outerloop, we will run a 5-fold crossvalidation 10 times and label the tokens as "TrainingOuter", hence the additional parameters are *10*, *5* and *Training*:
 
 ```py
 from CreateTokens import generate_tokens
@@ -36,7 +37,7 @@ from CreateTokens import generate_tokens
 First get some help on which parameters need to be set.
 ```py
 ?generate_tokens
-outerTokens = generate_tokens(DataAndFeatureExtractors, 10, 5, "TrainingOuter")
+outerTokens = generate_tokens(DataAndFeatureExtractors, 10, 5, "TrainingOuter<YourInitials>")
 ```
 
 Inspect the first token:
