@@ -51,6 +51,7 @@ First we need to set some parameters for lisa to choose the number of nodes, mem
 #PBS -lwalltime=3:00:00
 #PBS -lnodes=1
 ``` 
+Here we set the running time of the script to 3 hours and we let the compute cluster know that we need one node.
 
 Then we need to install the python dependencies.
 
@@ -88,6 +89,7 @@ for i in `seq 1 ${NUMBER_OF_CORES}`; do
 done
 wait
 ```
+The tokens we created only need one processor to be processed. Since, however, one core on lisa contains several nodes, we can optimise the usage of the node and start the script more often, i.e. in this case *NUMBER_OF_CORES* often. To steer the logging, we explicitely create output files for each of the parallel processes.
 
 ### Example shell script
 Save the cammonds above in a shell script called *go.sh*
