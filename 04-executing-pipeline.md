@@ -36,6 +36,7 @@ We will ship the code as a tgz-file.
 
 ### Preparing the code
 1) Open *pipeline.py* and enter your couchdb username and password and save the file.
+
 2) Create the tar-ball:
    ```sh
    cd /home/<user>/<ACESPATH>
