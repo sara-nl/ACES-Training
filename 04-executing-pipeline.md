@@ -5,6 +5,28 @@ This section will guide you through the steps to execute the pipeline in paralle
 We will create a pipeline python script, which will be embedded in a shell-script.
 The shell-script takes care of setting the environment of your compute cluster.
 
+1) We will create the shell script which defines the environment, downloads the data and calls the python pipeline to process all tokens in the couchdb.
+
+2) We will inspect and adjust the pipeline script which will:
+
+a) We will start the computations on an HPC cluster.
+
+b) Connect to the database
+
+c) Fetch a token
+
+d) Create the real python instances
+
+e) Start the computation
+
+f) Store the result in the token and push it to the couchdb
+
+g) Iterate over the steps under 2) until there are no more tokens in our todo view.
+
+3) **Watch out**
+ In the todo view there are also tokens which will not run properly and which will end with an error. So you might receive error messages during the computation. In that case try to find out what went wrong and either fix the token so that it can be processed or move it from the pending list to the weird list.
+You can do that in the futon view of the couchdb or via python code employing the [couchdb module](https://pythonhosted.org/CouchDB/getting-started.html).
+
 We assume that the code of this repository already resides on an access node or home directory of the compute cluster.
 If not, checkout the git repository again.
 
@@ -25,9 +47,9 @@ We will ship the code as a tgz-file.
 First we need to set some parameters for lisa to choose the number of nodes, memory and running time.
 
 ```sh
+#!/bin/bash
 #PBS -lwalltime=3:00:00
-#PBS -lnodes=1:cores16:mem64gb
-#PBS -S /bin/bash
+#PBS -lnodes=1
 ``` 
 
 Then we need to install the python dependencies.
@@ -40,11 +62,14 @@ easy_install --user scikit-learn
 We will also create a working directory, which will be removed after our runs finished.
 
 ```sh
-D=$TMPDIR/christine_$RANDOM
-echo $D
-mkdir $D
+MY_TEMP=`mktemp -d ${TMPDIR}/aces_XXXXX`
+cd ${MY_TEMP}
+```
 
-cd $D
+Download the data and place in the tempory directory
+
+```sh
+wget https://ndownloader.figshare.com/files/4851460
 ```
 
 Now we copy our code to the working directory, unpack it and change our working directory to there.
@@ -56,30 +81,32 @@ cd code/
 
 Finally we can start our python pipeline.
 ```sh
-python pipeline.py
+NUMBER_OF_CORES=`cat /proc/cpuinfo | grep processor | wc -l`
+MY_HOST=`hostname`
+for i in `seq 1 ${NUMBER_OF_CORES}`; do
+   python pipeline.py >& ${PBS_O_WORKDIR}/aces_${MY_HOST}_${i}.out &
+done
+wait
 ```
 
 ### Example shell script
 Save the cammonds above in a shell script called *go.sh*
 
 ```sh
+#!/bin/bash
 #PBS -lwalltime=3:00:00
-#PBS -lnodes=1:cores16:mem64gb
-#PBS -S /bin/bash
+#PBS -lnodes=1
 
 # Install python dependencies
 easy_install --user couchdb
 easy_install --user scikit-learn
 
-# Print all commandos
-set -e
-
 # Create a working directory
-D=$TMPDIR/christine_$RANDOM
-echo $D
-mkdir $D
+MY_TEMP=`mktemp -d ${TMPDIR}/aces_XXXXX`
+cd ${MY_TEMP}
 
-cd $D
+# Download data
+wget https://ndownloader.figshare.com/files/4851460
 
 # Copy and unpack the code
 cp ~/code.tgz code.tgz
@@ -88,7 +115,12 @@ tar xzf code.tgz
 cd code/
 
 # Start the pipeline
-python pipeline.py
+NUMBER_OF_CORES=`cat /proc/cpuinfo | grep processor | wc -l`
+MY_HOST=`hostname`
+for i in `seq 1 ${NUMBER_OF_CORES}`; do
+   python pipeline.py >& ${PBS_O_WORKDIR}/aces_${MY_HOST}_${i}.out &
+done
+wait
 ```
 
 ## Submitting a job to the queue
