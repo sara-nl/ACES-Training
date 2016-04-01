@@ -52,26 +52,22 @@ class ExampleActor(RunActor):
         #For the outer loop wecan use RunInstance immediatley, which will split the data into training and test
         if not innerCV:
             if specific == True or specific == False:
-                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) =  
-                    RunInstance(data, net, featureSelector, specific, 
-                        classifiers, repeat, self.nrFolds, fold, shuffleNr, Dataset2Time, specific)
+                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
+                    data, net, featureSelector, specific, classifiers, repeat, self.nrFolds, fold, shuffleNr, Dataset2Time, specific)
             else: 
-                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) =  
-                    RunInstance(data, net, featureSelector, specific, 
-                        classifiers, repeat, self.nrFolds, fold, shuffleNr, Dataset2Time) 
+                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
+                    data, net, featureSelector, specific, classifiers, repeat, self.nrFolds, fold, shuffleNr, Dataset2Time) 
         #For the inner loop we first have to split the data and then pass the training data to RunInstance
         else:
             dsOuterTraining, dsOuterTesting,_ = splitData(data, repeat, fold, self.nrFolds)
             print 'dsOuterTraining', dsOuterTraining
             print 'dsOuterTesting', dsOuterTesting
             if specific == True or specific == False:
-                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) =  
-                    RunInstance(dsOuterTraining, net, featureSelector, specific, 
-                        classifiers, innerrepeat, self.nrFolds, innerfold, shuffleNr, Dataset2Time, specific)
+                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
+                    dsOuterTraining, net, featureSelector, specific, classifiers, innerrepeat, self.nrFolds, innerfold, shuffleNr, Dataset2Time, specific)
             else:
-                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) =  
-                    RunInstance(dsOuterTraining, net, featureSelector, specific, 
-                        classifiers, innerrepeat, self.nrFolds, innerfold, shuffleNr, Dataset2Time)
+                (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
+                    dsOuterTraining, net, featureSelector, specific, classifiers, innerrepeat, self.nrFolds, innerfold, shuffleNr, Dataset2Time)
 
         # close the token after the computations, setting flag done            
         token = self.modifier.close(token)
