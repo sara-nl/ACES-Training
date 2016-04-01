@@ -61,11 +61,11 @@ def SetUpRun(dataset, network, method):
 
     #get network
     if network == "nwGeneSetsKEGG":
-        net   = ReadGeneSetCollection("KEGGpw" , "experiments/data/KEGG1210_PathwayGeneSets_Entrez.txt" , "Entrez_")
+        net   = ReadGeneSetCollection("KEGGpw" , "data/KEGG1210_PathwayGeneSets_Entrez.txt" , "Entrez_")
     elif network == "nwGeneSetsMsigDB":
-        net = ReadGeneSetCollection("MsigDBpw" , "experiments/data/C2V3_PathwayGeneSets_Entrez.txt"     , "Entrez_")
+        net = ReadGeneSetCollection("MsigDBpw" , "data/C2V3_PathwayGeneSets_Entrez.txt"     , "Entrez_")
     elif network == "nwEdgesKEGG":
-        net = ReadSIF("KEGG"  , "experiments/data/KEGG_edges1210.sif" , "Entrez_")
+        net = ReadSIF("KEGG"  , "data/KEGG_edges1210.sif" , "Entrez_")
     elif network == None:
         net = None
         print "SG no network"
