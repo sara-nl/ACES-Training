@@ -2,7 +2,13 @@
 
 ## Synopsis
 This tutorial teaches master and PhD students how to coordinate so-called embarassingly parrallel computational tasks across different infratsructures.
-The tutorial shows students how to create tokens and process tokens which code for the single runs.
+
+**Problem**
+We have a huge computational problem which can be split into many smaller problems which are independent (embarassingly parallel) and by this making the probem computationally smaller.
+The single smaller problems can be run by several infrastructures. We now would like to coordinate runs solving the smaller problems and later on aggregate the results of the runs. Hence, we are left with an enormous administrational task.
+
+This tutorial shows how to code, coordinate and distribute runs belonging to the same problem.
+The tutorial shows students how to create and process tokens which code for the single runs.
 The pipeline makes use of couchdb as a token pool server and uses python and the [picasclient](https://github.com/jjbot/picasclient).
 
 ## Technology requisites
