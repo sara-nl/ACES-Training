@@ -5,7 +5,7 @@ In this section we will process one of the tokens we created.
 
 1) We will inspect the code which will translate our tokens into instances of classes for datasets, classifiers and feature extraction algorithms. In short we will answer the question how do I come from a combination of strings, parameters and flags to something that really does the computation.
 
-2) We will start the computations on an HPC cluster.
+2) We will start an example computation.
 
 2a) Connect to the database
 
@@ -18,7 +18,7 @@ In this section we will process one of the tokens we created.
 2e) Inspect the result
 
 ## Data
-Before we can run a token manually, we need to download some data which will be processed. In the actual pipeline tha data will be downloaded automatically.
+Before we can run a token manually, we need to download some data the token refers to and which will be processed. In the actual pipeline the data will be downloaded automatically.
 
 Run the *wget* command on the shell in the parent directory of the *code* directory.
 
@@ -38,7 +38,7 @@ repeat      = token['input']['repeat']
 fold        = token['input']['fold']
 shuffleNr   =  token['input']['shuffleNr']
 ```
-For the tokens that define the inner crossvalidation loop we also have
+For the tokens that define the inner cross-validation loop we also have
 
 ```py
 innerfold   = token['input']['innerFold']
@@ -69,7 +69,7 @@ method      = token['input']['method']
 specific    = token['input']['specific']
 repeat      = token['input']['repeat']
 fold        = token['input']['fold']
-shuffleNr   =  token['input']['shuffleNr']
+shuffleNr   = token['input']['shuffleNr']
 
 innerfold   = token['input']['innerFold']
 innerrepeat = token['input']['innerRepeat']
@@ -88,7 +88,7 @@ print(featureSelector)
 print(classifiers)
 ```
 
-Now we can calculate the result, with number of folds 
+Now we can calculate the result
 ```py
 from SetUpGrid import RunInstance
 (dataName, featureExtractorproductName, netName, shuffle, featureExtractor, AucAndCi) = RunInstance(
@@ -109,7 +109,7 @@ But also some complicated data structures:
 type(AucAndCi)
 ```
 
-Some very complicated datastructure were converted to json strings but we can revive them.
+Some very complicated datastructure were converted to json strings, a vcertain text format, but we can revive them.
 
 ```
 import json
