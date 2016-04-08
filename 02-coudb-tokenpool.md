@@ -1,11 +1,11 @@
 # The couchdb as token pool server
 
 ## Outline
-In this section we will shortly explain what a token pool server is and how couchdb can be employed. For an extensive tutorial on couchdb we refer to their [official website](http://couchdb.apache.org/)
+In this section we will shortly explain what a token pool server is and how couchdb can be employed. For an extensive tutorial on couchdb we refer to their [official website](http://couchdb.apache.org/).
 
 ## Token pool server
-A token is something that encodes something else. In our case the tokens encode a computational problem that need to be calculated. All of our tokens that we created can be run independently from each other. However, all of the tokens need to be computed and their solution need to be combined to solve the whole problem. This is what we also call *embarassingly pararllel*.
-A token pool server needs to be able to store tokens, iterate over them and to either remove tem from the pool as soon as the computations finished or label them differently so that they will not be recalculated.
+A token is something that encodes something else. In our case the tokens encode a computational problem that needs to be calculated. All of our tokens that we created can be run independently from each other. However, all of the tokens need to be computed and their solutions need to be combined to solve the whole problem. This is what we also call *embarassingly pararllel*.
+A token pool server needs to be able to store tokens, iterate over them and to either remove them from the pool as soon as the computations finished or label them differently so that they will not be recalculated.
 
 # couchdb as a token pool server
 To use couchdb as a tokenpool server, we need to pass some extra *flags* to our tokens.
