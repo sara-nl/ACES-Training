@@ -20,7 +20,7 @@ In this section we will process one of the tokens we created.
 ## Data
 Before we can run a token manually, we need to download some data the token refers to and which will be processed. In the actual pipeline the data will be downloaded automatically.
 
-Run the *wget* command on the shell in the parent directory of the *code* directory.
+Run the *wget* command on the shell inside the "ACES-Training" directory, i.e. the parent directory of "code".
 
 ```sh
 wget https://ndownloader.figshare.com/files/4851460
