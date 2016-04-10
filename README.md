@@ -13,7 +13,7 @@ The pipeline makes use of couchdb as a token pool server and uses python and the
 
 ## Technology requisites
 To follow the tutorial you need a python distribution and access to a couchdb instance.
-In our tutorial we make us e of the lisa-cluster. On lisa execute
+In our tutorial we make use of the lisa-cluster. On lisa execute
 
 ```sh
 easy_install --user couchdb
