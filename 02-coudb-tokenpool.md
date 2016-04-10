@@ -24,7 +24,7 @@ done | lock | meaning
 0 | 0 | Token needs to be tackled and will end up in a todo list.
 0 | >0 | Token is being processed, or during the computation an error occurred.
 >0 | >0 | Token was successfully processed.
->0 | 0 | This is a weird state of the token which should never occurr.
+>0 | 0 | This is a weird state of the token which should never occur.
 
 During the processing the flags *lock* and *done* will be set with the system time so that, after a token is successfully processed, you can get the running with *lock*-*done*.
 
