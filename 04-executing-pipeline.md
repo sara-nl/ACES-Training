@@ -35,7 +35,7 @@ The compute nodes of lisa need to be equipped with the code you want to run and 
 We will ship the code as a tgz-file.
 
 ### Preparing the code
-1) Open *pipeline.py* and enter your couchdb username and password and save the file.
+1) Open *pipeline.py* and enter your couchdb username, password and change the view to "run/todo" and save the file.
 
 2) Create the tar-ball:
    ```sh
@@ -44,6 +44,9 @@ We will ship the code as a tgz-file.
    ``` 
 
 ### Creating the shell-script
+
+In the previous sections we have seen how to set the python environment and where to get the data and where to put it. In this section we will create a script that does all this automatically as soon as we try to run the pipeline.
+In the next paragraph we will take you through the single steps, there is no need to execute anything on shell. This paragraph will be followed by the complete shell-script which you can copy paste.
 
 Change back to your *home* directory
 ```sh
@@ -73,7 +76,7 @@ MY_TEMP=`mktemp -d ${TMPDIR}/aces_XXXXX`
 cd ${MY_TEMP}
 ```
 
-Download the data and place in the tempory directory
+Download the data and place in the tempory directory. 
 
 ```sh
 wget https://ndownloader.figshare.com/files/4851460
@@ -176,10 +179,17 @@ db = couch["hpc-training"]
 from SetUpGrid import getDoneTokens
 done, pending = getDoneTokens(db, "TrainingOuter")
 ```
+ **Note** This function will loop over all documents in couchdb and can take a very long time. 
+You can also fetch a token from the Done-list by:
+
+```py
+token = db['id_of_done_token']
+```
+
 Inspect one of the tokens. You will see that *lock* and *done* set. In fact that is the sytem time when the calculations started and when they stoped. So you can calculate how long it took to run the algorithm on this specific instance. Furthermore, you can see on which machine the computations were executed.
 
 
-3) Reset pending tokens. TOkens that are marked as pending, can still be processed but couls also have stopped with an error. In both cases we can reset the tokens and put them again in the todo list.
+3) Reset pending tokens. Tokens that are marked as pending, can still be processed but could also have stopped with an error. In both cases we can reset the tokens and put them again in the todo list.
 
 ```py
 from SetUpGrid import resetTokens
@@ -187,9 +197,22 @@ ids = [token['_id'] for token in pending]
 resetTokens(ids, db)
 ```
 
-Plotting the AUC for one token
+Plotting the AUC for one token.
+For the plotting function we need to connect to lisa via an xterm:
+
+```sh
+ssh '-X’ <login>@lisa.surfsara.nl
+ipython
+```
+
+And reconnect to the couchdb:
 ```py
-token = done[0]
+import couchdb
+couch = couchdb.Server("https://nosql01.grid.sara.nl:6984")
+couch.resource.credentials = ("<username>", "<password>")
+db = couch["hpc-training"]
+
+token = db['TrainingInner_U133A_combat_DMFS_None_RandomGenes_None_0_0_0_0_None']
 token["output"][6][u'BinaryNearestMeanClassifier_V1']
 ```
 
