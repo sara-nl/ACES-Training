@@ -9,6 +9,10 @@ In this section we will create database entries which code for single runs.
 
 Start an ipython or interactive python session in the folder *code*.
 
+```sh
+ipython
+```
+
 ## Coding for the tokens
 The function *CombineData* in *SetUpGrid.py* creates a list
 ```sh
@@ -65,7 +69,7 @@ Now we need to upload the data to a couchdb instance.
 import couchdb
 
 couch = couchdb.Server("https://nosql01.grid.sara.nl:6984")
-couch.resource.credentials = (<username>, <password>)
+couch.resource.credentials = ("<username>", "<password>")
 db = couch["hpc-training"]
 
 for token in outerTokens+innerTokens:
