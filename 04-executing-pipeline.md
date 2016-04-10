@@ -225,6 +225,11 @@ featVsAucs = numpy.array([[key, value[0]] for key, value in token["output"][6][u
 plt.plot(featVsAucs[:, 0], featVsAucs[:, 1], 'ro')
 plt.ylabel("AUCs")
 plt.xlabel("#Features")
+
+#If you started an x-term you can directly let python show you the plot
+plt.show()
+
+#Or you can save the figure as e.g. png
 plt.savefig("<PATH>/AUC.png")
 plt.clf()
 ```
